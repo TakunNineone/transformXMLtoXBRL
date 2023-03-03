@@ -16,35 +16,6 @@
     {
         "razdel1":{
             "tag":"Ф0409725_Раздел1_Идент",
-            "varible":{
-            "@КолКлиенНепокрПоз":{"var":"ko-dic:Kol_nepokr_poz","decimals": "0", "unit": "pure","period":"instant","axis":null},
-            "@СумЗначПланПозКлиент":{"var":"ko-dic:Summ_plan_poz","decimals": "2", "unit": "RUB","period":"instant","axis":null},
-            "@СумЗначОтрПланПозКлиент":{"var":"ko-dic:Summ_otricz_plan_poz","decimals": "2", "unit": "RUB","period":"instant","axis":null},
-            "@СумЗначОтрПланПозКлиентНомВал":{"var":"ko-dic:Summ_otricz_plan_pozNomInVal","decimals": "2","unit": "RUB","period":"instant","axis":null},
-            "@СумЗначОтрПланПозКлиентДрагМет":{"var":"ko-dic:Summ_otricz_plan_pozDragMet","decimals": "2","unit": "RUB","period":"instant","axis":null},
-            "@СумНедостСредИспНПР1":{"var":"ko-dic:NedostSrNorm","decimals": "2", "unit": "RUB","period":"instant","axis":null},
-            "@КолКлиенНепокрПозПозСделКор":{"var":"ko-dic:Kol_nepokr_poz","decimals": "0","unit": "pure","period":"instant",
-            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:KorotkayaMember"]},
-            "@КолКлиенНепокрПозПозСделДлин":{"var":"ko-dic:Kol_nepokr_poz","decimals": "0", "unit": "pure","period":"instant",
-            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:DlinnayaMember"]},
-            "@СумЗначНепокрПозПозСделКорВалРФЭквРуб":{"var":"ko-dic:SumNepokPoz","decimals": "2", "unit": "RUB","period":"instant",
-            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:KorotkayaMember","dim-int:NaczVal_RubEkvAxis|mem-int:Rubli_Member"]},
-            "@СумЗначНепокрПозПозСделКорВалРФЭквВал":{"var":"ko-dic:SumNepokPoz","decimals": "2", "unit": "RUB","period":"instant",
-            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:KorotkayaMember","dim-int:NaczVal_RubEkvAxis|mem-int:ValyutaMember"]},
-            "@СумЗначНепокрПозПозСделКорВалРФЭквДрагМет":{"var":"ko-dic:SumNepokPoz","decimals": "2", "unit": "RUB","period":"instant",
-            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:KorotkayaMember","dim-int:NaczVal_RubEkvAxis|mem-int:DragoczennyeMetallyMember"]},
-            "@СумЗначНепокрПозПозСделДлинВалРФЭквРуб":{"var":"ko-dic:SumNepokPoz","decimals": "2", "unit": "RUB","period":"instant",
-            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:DlinnayaMember","dim-int:NaczVal_RubEkvAxis|mem-int:Rubli_Member"]},
-            "@СумЗначНепокрПозПозСделДлинВалРФЭквВал":{"var":"ko-dic:SumNepokPoz","decimals": "2", "unit": "RUB","period":"instant",
-            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:DlinnayaMember","dim-int:NaczVal_RubEkvAxis|mem-int:ValyutaMember"]},
-            "@СумЗначНепокрПозПозСделДлинВалРФЭквДрагМет":{"var":"ko-dic:SumNepokPoz","decimals": "2", "unit": "RUB","period":"instant",
-            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:DlinnayaMember","dim-int:NaczVal_RubEkvAxis|mem-int:DragoczennyeMetallyMember"]},
-            "@СумКорПланПозВалДолСША":{"var":"ko-dic:SumKorPlanPoz","decimals": "2", "unit": "RUB","period":"instant",
-            "axis":["dim-int:Valyuta_Inf_baz_akt_svop_dogValyutaAxis|mem-int:Dollar_SSHAMember"]},
-            "@СумКорПланПозВалЕвро":{"var":"ko-dic:SumKorPlanPoz","decimals": "2", "unit": "RUB","period":"instant",
-            "axis":["dim-int:Valyuta_Inf_baz_akt_svop_dogValyutaAxis|mem-int:EvroMember"]}
-            },
-            "taxis": {},
             "axiss_y_synthetic": {
                 "@Тип_Клиента": {
                     "1": [
@@ -98,6 +69,35 @@
                         "dim-int:Rezident_nerezidentAxis|mem-int:NerezidentMember"
                     ]
                 }
+            },
+            "taxis": {},
+            "varible":{
+            "@КолКлиенНепокрПоз":{"var":"ko-dic:Kol_nepokr_poz","decimals": "0", "unit": "pure","period":"instant","axis":null},
+            "@СумЗначПланПозКлиент":{"var":"ko-dic:Summ_plan_poz","decimals": "2", "unit": "RUB","period":"instant","axis":null},
+            "@СумЗначОтрПланПозКлиент":{"var":"ko-dic:Summ_otricz_plan_poz","decimals": "2", "unit": "RUB","period":"instant","axis":null},
+            "@СумЗначОтрПланПозКлиентНомВал":{"var":"ko-dic:Summ_otricz_plan_pozNomInVal","decimals": "2","unit": "RUB","period":"instant","axis":null},
+            "@СумЗначОтрПланПозКлиентДрагМет":{"var":"ko-dic:Summ_otricz_plan_pozDragMet","decimals": "2","unit": "RUB","period":"instant","axis":null},
+            "@СумНедостСредИспНПР1":{"var":"ko-dic:NedostSrNorm","decimals": "2", "unit": "RUB","period":"instant","axis":null},
+            "@КолКлиенНепокрПозПозСделКор":{"var":"ko-dic:Kol_nepokr_poz","decimals": "0","unit": "pure","period":"instant",
+            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:KorotkayaMember"]},
+            "@КолКлиенНепокрПозПозСделДлин":{"var":"ko-dic:Kol_nepokr_poz","decimals": "0", "unit": "pure","period":"instant",
+            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:DlinnayaMember"]},
+            "@СумЗначНепокрПозПозСделКорВалРФЭквРуб":{"var":"ko-dic:SumNepokPoz","decimals": "2", "unit": "RUB","period":"instant",
+            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:KorotkayaMember","dim-int:NaczVal_RubEkvAxis|mem-int:Rubli_Member"]},
+            "@СумЗначНепокрПозПозСделКорВалРФЭквВал":{"var":"ko-dic:SumNepokPoz","decimals": "2", "unit": "RUB","period":"instant",
+            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:KorotkayaMember","dim-int:NaczVal_RubEkvAxis|mem-int:ValyutaMember"]},
+            "@СумЗначНепокрПозПозСделКорВалРФЭквДрагМет":{"var":"ko-dic:SumNepokPoz","decimals": "2", "unit": "RUB","period":"instant",
+            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:KorotkayaMember","dim-int:NaczVal_RubEkvAxis|mem-int:DragoczennyeMetallyMember"]},
+            "@СумЗначНепокрПозПозСделДлинВалРФЭквРуб":{"var":"ko-dic:SumNepokPoz","decimals": "2", "unit": "RUB","period":"instant",
+            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:DlinnayaMember","dim-int:NaczVal_RubEkvAxis|mem-int:Rubli_Member"]},
+            "@СумЗначНепокрПозПозСделДлинВалРФЭквВал":{"var":"ko-dic:SumNepokPoz","decimals": "2", "unit": "RUB","period":"instant",
+            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:DlinnayaMember","dim-int:NaczVal_RubEkvAxis|mem-int:ValyutaMember"]},
+            "@СумЗначНепокрПозПозСделДлинВалРФЭквДрагМет":{"var":"ko-dic:SumNepokPoz","decimals": "2", "unit": "RUB","period":"instant",
+            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:DlinnayaMember","dim-int:NaczVal_RubEkvAxis|mem-int:DragoczennyeMetallyMember"]},
+            "@СумКорПланПозВалДолСША":{"var":"ko-dic:SumKorPlanPoz","decimals": "2", "unit": "RUB","period":"instant",
+            "axis":["dim-int:Valyuta_Inf_baz_akt_svop_dogValyutaAxis|mem-int:Dollar_SSHAMember"]},
+            "@СумКорПланПозВалЕвро":{"var":"ko-dic:SumKorPlanPoz","decimals": "2", "unit": "RUB","period":"instant",
+            "axis":["dim-int:Valyuta_Inf_baz_akt_svop_dogValyutaAxis|mem-int:EvroMember"]}
             }
         },
         "razdel2": {

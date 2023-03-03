@@ -1,0 +1,227 @@
+{
+"xbrl_header":{"xmlns:mem-int": "http://www.cbr.ru/xbrl/udr/dom/mem-int",
+                       "xmlns:xlink": "http://www.w3.org/1999/xlink",
+                       "xmlns:ko-dic": "http://www.cbr.ru/xbrl/nso/ko/dic/ko-dic",
+                       "xmlns:dim-int": "http://www.cbr.ru/xbrl/udr/dim/dim-int",
+                       "xmlns:iso4217": "http://www.xbrl.org/2003/iso4217",
+                       "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+                       "xmlns:link": "http://www.xbrl.org/2003/linkbase",
+                       "xmlns:nfo-dic": "http://www.cbr.ru/xbrl/nso/nfo/dic",
+                       "xmlns:xbrldi": "http://xbrl.org/2006/xbrldi",
+                       "xmlns:xbrli": "http://www.xbrl.org/2003/instance"},
+"schemaref":"http://www.cbr.ru/xbrl/nso/ko/rep/2022-11-30/ep/ep_SR_0409725.xsd",
+"units":{"unit1":{"id":"pure","text":"xbrli:pure"},"unit2":{"id":"RUB","text":"iso4217:RUB"}},
+"root":"Ф0409725",
+"data":
+    {
+        "razdel1":{
+            "tag":"Ф0409725_Раздел1_Идент",
+            "varible":{
+            "@КолКлиенНепокрПоз":{"var":"ko-dic:Kol_nepokr_poz","decimals": "0", "unit": "pure","period":"instant","axis":null},
+            "@СумЗначПланПозКлиент":{"var":"ko-dic:Summ_plan_poz","decimals": "2", "unit": "RUB","period":"instant","axis":null},
+            "@СумЗначОтрПланПозКлиент":{"var":"ko-dic:Summ_otricz_plan_poz","decimals": "2", "unit": "RUB","period":"instant","axis":null},
+            "@СумЗначОтрПланПозКлиентНомВал":{"var":"ko-dic:Summ_otricz_plan_pozNomInVal","decimals": "2","unit": "RUB","period":"instant","axis":null},
+            "@СумЗначОтрПланПозКлиентДрагМет":{"var":"ko-dic:Summ_otricz_plan_pozDragMet","decimals": "2","unit": "RUB","period":"instant","axis":null},
+            "@СумНедостСредИспНПР1":{"var":"ko-dic:NedostSrNorm","decimals": "2", "unit": "RUB","period":"instant","axis":null},
+            "@КолКлиенНепокрПозПозСделКор":{"var":"ko-dic:Kol_nepokr_poz","decimals": "0","unit": "pure","period":"instant",
+            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:KorotkayaMember"]},
+            "@КолКлиенНепокрПозПозСделДлин":{"var":"ko-dic:Kol_nepokr_poz","decimals": "0", "unit": "pure","period":"instant",
+            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:DlinnayaMember"]},
+            "@СумЗначНепокрПозПозСделКорВалРФЭквРуб":{"var":"ko-dic:SumNepokPoz","decimals": "2", "unit": "RUB","period":"instant",
+            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:KorotkayaMember","dim-int:NaczVal_RubEkvAxis|mem-int:Rubli_Member"]},
+            "@СумЗначНепокрПозПозСделКорВалРФЭквВал":{"var":"ko-dic:SumNepokPoz","decimals": "2", "unit": "RUB","period":"instant",
+            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:KorotkayaMember","dim-int:NaczVal_RubEkvAxis|mem-int:ValyutaMember"]},
+            "@СумЗначНепокрПозПозСделКорВалРФЭквДрагМет":{"var":"ko-dic:SumNepokPoz","decimals": "2", "unit": "RUB","period":"instant",
+            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:KorotkayaMember","dim-int:NaczVal_RubEkvAxis|mem-int:DragoczennyeMetallyMember"]},
+            "@СумЗначНепокрПозПозСделДлинВалРФЭквРуб":{"var":"ko-dic:SumNepokPoz","decimals": "2", "unit": "RUB","period":"instant",
+            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:DlinnayaMember","dim-int:NaczVal_RubEkvAxis|mem-int:Rubli_Member"]},
+            "@СумЗначНепокрПозПозСделДлинВалРФЭквВал":{"var":"ko-dic:SumNepokPoz","decimals": "2", "unit": "RUB","period":"instant",
+            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:DlinnayaMember","dim-int:NaczVal_RubEkvAxis|mem-int:ValyutaMember"]},
+            "@СумЗначНепокрПозПозСделДлинВалРФЭквДрагМет":{"var":"ko-dic:SumNepokPoz","decimals": "2", "unit": "RUB","period":"instant",
+            "axis":["dim-int:PozicziyaPoSdelkeAxis|mem-int:DlinnayaMember","dim-int:NaczVal_RubEkvAxis|mem-int:DragoczennyeMetallyMember"]},
+            "@СумКорПланПозВалДолСША":{"var":"ko-dic:SumKorPlanPoz","decimals": "2", "unit": "RUB","period":"instant",
+            "axis":["dim-int:Valyuta_Inf_baz_akt_svop_dogValyutaAxis|mem-int:Dollar_SSHAMember"]},
+            "@СумКорПланПозВалЕвро":{"var":"ko-dic:SumKorPlanPoz","decimals": "2", "unit": "RUB","period":"instant",
+            "axis":["dim-int:Valyuta_Inf_baz_akt_svop_dogValyutaAxis|mem-int:EvroMember"]}
+            },
+            "taxis": {},
+            "axiss_y_synthetic": {
+                "@Тип_Клиента": {
+                    "1": [
+                        "dim-int:Uroven_riskaAxis|mem-int:StandartMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:FLMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:RezidentMember"
+                    ],
+                    "2": [
+                        "dim-int:Uroven_riskaAxis|mem-int:StandartMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:FLMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:NerezidentMember"
+                    ],
+                    "3": [
+                        "dim-int:Uroven_riskaAxis|mem-int:StandartMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:RezidentMember"
+                    ],
+                    "4": [
+                        "dim-int:Uroven_riskaAxis|mem-int:StandartMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:NerezidentMember"
+                    ],
+                    "5": [
+                        "dim-int:Uroven_riskaAxis|mem-int:PovyshMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:FLMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:RezidentMember"
+                    ],
+                    "6": [
+                        "dim-int:Uroven_riskaAxis|mem-int:PovyshMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:FLMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:NerezidentMember"
+                    ],
+                    "7": [
+                        "dim-int:Uroven_riskaAxis|mem-int:PovyshMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:RezidentMember"
+                    ],
+                    "8": [
+                        "dim-int:Uroven_riskaAxis|mem-int:PovyshMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:NerezidentMember"
+                    ],
+                    "9": [
+                        "dim-int:Uroven_riskaAxis|mem-int:OsobMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:RezidentMember"
+                    ],
+                    "10": [
+                        "dim-int:Uroven_riskaAxis|mem-int:OsobMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:NerezidentMember"
+                    ]
+                }
+            }
+        },
+        "razdel2": {
+            "tag":"Ф0409725_Раздел2_Строка",
+            "axiss_y_synthetic":{
+                "@Тип_Клиента": {
+                    "1": [
+                        "dim-int:Uroven_riskaAxis|mem-int:StandartMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:FLMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:RezidentMember"
+                    ],
+                    "2": [
+                        "dim-int:Uroven_riskaAxis|mem-int:StandartMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:FLMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:NerezidentMember"
+                    ],
+                    "3": [
+                        "dim-int:Uroven_riskaAxis|mem-int:StandartMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:RezidentMember"
+                    ],
+                    "4": [
+                        "dim-int:Uroven_riskaAxis|mem-int:StandartMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:NerezidentMember"
+                    ],
+                    "5": [
+                        "dim-int:Uroven_riskaAxis|mem-int:PovyshMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:FLMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:RezidentMember"
+                    ],
+                    "6": [
+                        "dim-int:Uroven_riskaAxis|mem-int:PovyshMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:FLMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:NerezidentMember"
+                    ],
+                    "7": [
+                        "dim-int:Uroven_riskaAxis|mem-int:PovyshMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:RezidentMember"
+                    ],
+                    "8": [
+                        "dim-int:Uroven_riskaAxis|mem-int:PovyshMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:NerezidentMember"
+                    ],
+                    "9": [
+                        "dim-int:Uroven_riskaAxis|mem-int:OsobMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:RezidentMember"
+                    ],
+                    "10": [
+                        "dim-int:Uroven_riskaAxis|mem-int:OsobMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:NerezidentMember"
+                    ]
+                }
+            },
+            "taxis": {"@ДатаТоргДеньОтчПер":"dim-int:Data_Torg_den_Taxis|dim-int:Data_Torg_denTypedname"},
+            "varible":{"@КолКлиентОтрНПР2":{"var":"ko-dic:Kol_OtrNPR_poz","decimals": "0", "unit": "pure","period":"instant","axis":null}}
+        },
+        "razdel3": {
+            "tag": "Ф0409725_Раздел3_Строка",
+            "axiss_y_synthetic": {
+                "@Тип_Клиента": {
+                    "1": [
+                        "dim-int:Uroven_riskaAxis|mem-int:StandartMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:FLMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:RezidentMember"
+                    ],
+                    "2": [
+                        "dim-int:Uroven_riskaAxis|mem-int:StandartMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:FLMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:NerezidentMember"
+                    ],
+                    "3": [
+                        "dim-int:Uroven_riskaAxis|mem-int:StandartMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:RezidentMember"
+                    ],
+                    "4": [
+                        "dim-int:Uroven_riskaAxis|mem-int:StandartMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:NerezidentMember"
+                    ],
+                    "5": [
+                        "dim-int:Uroven_riskaAxis|mem-int:PovyshMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:FLMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:RezidentMember"
+                    ],
+                    "6": [
+                        "dim-int:Uroven_riskaAxis|mem-int:PovyshMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:FLMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:NerezidentMember"
+                    ],
+                    "7": [
+                        "dim-int:Uroven_riskaAxis|mem-int:PovyshMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:RezidentMember"
+                    ],
+                    "8": [
+                        "dim-int:Uroven_riskaAxis|mem-int:PovyshMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:NerezidentMember"
+                    ],
+                    "9": [
+                        "dim-int:Uroven_riskaAxis|mem-int:OsobMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:RezidentMember"
+                    ],
+                    "10": [
+                        "dim-int:Uroven_riskaAxis|mem-int:OsobMember",
+                        "dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+                        "dim-int:Rezident_nerezidentAxis|mem-int:NerezidentMember"
+                    ]
+                }
+            },
+            "taxis": {"@ИДЦенБум":"dim-int:ID_CzennojBumagiTaxis|dim-int:ID_CzennojBumagi_TypedName"},
+            "varible": {
+                "@РегНомИдентНомВып": {"var":"nfo-dic:GosRegNomerVyp","decimals": null, "unit": null,"period":"instant", "axis":null},
+                "@ISIN": {"var":"nfo-dic:ISIN","decimals": null, "unit": null,"period":"instant", "axis":null},
+                "@СумКорПланПоз": {"var":"ko-dic:SumKorPlanPoz","decimals": "2", "unit": "RUB","period":"instant","axis":null}
+            }
+        }
+
+}
+}

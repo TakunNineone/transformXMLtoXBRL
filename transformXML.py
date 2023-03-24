@@ -1,9 +1,6 @@
-import xml.etree.ElementTree as ET
-import json
-import xmltodict
-import xml.dom.minidom as minidom
-import itertools,collections
-from bs4 import BeautifulSoup
+import itertools,collections,xmltodict,json,xml.dom.minidom as minidom,xml.etree.ElementTree as ET
+from dateutil.relativedelta import relativedelta
+from datetime import datetime
 
 class transformxml():
     def __init__(self,path):
@@ -62,7 +59,7 @@ class transformxml():
         reparsed = minidom.parseString(rough_string)
         reparsed.writexml(open(f'{filename}.xml', 'w'), indent="  ", addindent="  ", newl='\n', encoding="utf-8")
 
-    def makecontext(self,context_id,ogrn,period,period_type,axis,taxis,taxis_value):
+    def makecontext(self,context_id,ogrn,period,duration,axis,taxis,taxis_value):
         context = ET.Element("xbrli:context")
         context.attrib = {"id": context_id}
         entiy = ET.SubElement(context, "xbrli:entity")
@@ -70,9 +67,10 @@ class transformxml():
         ident.attrib = {"scheme": "http://www.cbr.ru"}
         ident.text = ogrn
         period_ = ET.SubElement(context, "xbrli:period")
-        if period_type == "duration":
+        period_date = datetime.strptime(period, '%Y-%m-%d').date()
+        if duration:
             startdate = ET.SubElement(period_, "xbrli:startDate")
-            startdate.text = "2023-07-01"
+            startdate.text = str(period_date - relativedelta (months=int(duration)) + relativedelta(days=1))
             enddate = ET.SubElement(period_, "xbrli:endDate")
             enddate.text = period
         else:
@@ -134,10 +132,10 @@ class transformxml():
             check=True
             for data_stroka in data_full:
                 default_axis_stroka=[]
+                taxis_temp, taxis_value_temp = None, None
                 for axis_pok_key in axis_pok:
                     default_axis_stroka=list(itertools.chain(default_axis_stroka,axiss_y_synthetic[axis_pok_key].get(data_stroka[axis_pok_key])))
 
-                taxis_temp, taxis_value_temp = None, None
                 for pokazatel in data_stroka.keys():
                     if taxis.get(pokazatel):
                         taxis_temp = taxis.get(pokazatel)
@@ -152,31 +150,39 @@ class transformxml():
 
                         if context_var_list==[]:
                             context_id_temp=f'{key}_{i}'
-                            context_var_list.append({'razdel':key,'context_id':context_id_temp,'axis': axis_temp,'taxis':taxis_temp,'taxis_value':taxis_value_temp,'period_type':varible.get(pokazatel).get('period')})
-                            self.makecontext( context_id_temp, ogrn, period, varible.get(pokazatel).get('period'),axis_temp, taxis_temp,taxis_value_temp)
+                            context_var_list.append({'razdel':key,'context_id':context_id_temp,'axis': axis_temp,'taxis':taxis_temp,'taxis_value':taxis_value_temp,'duration':varible.get(pokazatel).get('period')})
+                            self.makecontext( context_id_temp, ogrn, period, varible.get(pokazatel).get('duration'),axis_temp, taxis_temp,taxis_value_temp)
                             check= True
                         else:
                             for cc in context_var_list:
-                                if collections.Counter(axis_temp) == collections.Counter(cc.get('axis')) and cc['taxis']==taxis_temp and cc['taxis_value']==taxis_value_temp and cc['period_type']==varible.get(pokazatel).get('period'):
+                                if collections.Counter(axis_temp) == collections.Counter(cc.get('axis')) and cc['taxis']==taxis_temp and cc['taxis_value']==taxis_value_temp and cc['duration']==varible.get(pokazatel).get('duration'):
                                     context_id_temp=cc.get('context_id')
                                     check = True
                                     break
                                 else:
                                     check=False
                         if check==False:
-                            i=i+1
+                            i += 1
                             context_id_temp = f'{key}_{i}'
-                            context_var_list.append({'razdel':key,'context_id': context_id_temp, 'axis': axis_temp,'taxis':taxis_temp,'taxis_value':taxis_value_temp,'period_type':varible.get(pokazatel).get('period')})
-                            self.makecontext(context_id_temp,ogrn,period,varible.get(pokazatel).get('period'),axis_temp,taxis_temp,taxis_value_temp)
+                            context_var_list.append({'razdel':key,'context_id': context_id_temp, 'axis': axis_temp,'taxis':taxis_temp,'taxis_value':taxis_value_temp,'duration':varible.get(pokazatel).get('duration')})
+                            self.makecontext(context_id_temp,ogrn,period,varible.get(pokazatel).get('duration'),axis_temp,taxis_temp,taxis_value_temp)
                         self.makevarible(context_id_temp,varible.get(pokazatel).get('var'),varible.get(pokazatel).get('enum'),data_stroka.get(pokazatel),varible.get(pokazatel).get('unit'),varible.get(pokazatel).get('decimals'))
-                        print(context_id_temp)
 
 if __name__ == "__main__":
-    ss=transformxml('mapping_0409725.json')
+    ss=transformxml('mapping_0409725_old.json')
     xbrl=ss.makeXBRL()
-    instance=ss.parseXML('report_04209725.xml')
+    instance=ss.parseXML('report_0409725.xml')
     ss.fillcontext(instance)
     ss.writecontext(xbrl)
     ss.makeUnit(xbrl)
     ss.writevarible(xbrl)
-    ss.saveXBRL(xbrl,'report_04209725_output')
+    ss.saveXBRL(xbrl,'report_0409725_output')
+
+    # ss = transformxml('mapping_0409728.json')
+    # xbrl = ss.makeXBRL()
+    # instance = ss.parseXML('report_04209728.xml')
+    # ss.fillcontext(instance)
+    # ss.writecontext(xbrl)
+    # ss.makeUnit(xbrl)
+    # ss.writevarible(xbrl)
+    # ss.saveXBRL(xbrl, 'report_04209728_output')

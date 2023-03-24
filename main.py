@@ -12,20 +12,37 @@ class transformxml():
         self.contexts=[]
 
     #Создание тела контекста
-    def makeContext(self,context_id,identificator,peirod,period_type):
+    def makeContext(self,context_id,identificator,period,period_type):
         context=ET.Element("xbrli:context")
         context.attrib={'id':context_id}
         entiy=ET.SubElement(context, "xbrli:entity")
         ident=ET.SubElement(entiy, "xbrli:identifier")
         ident.attrib={'scheme':"http://www.cbr.ru"}
         ident.text=identificator
-        period_ = ET.SubElement(context, "xbrli:period")
-        if period_type=='instant': # для duration надо будет добавить условие
-            instant=ET.SubElement(period_, "xbrli:instant")
-            instant.text=peirod
+        # period_ = ET.SubElement(context, "xbrli:period")
+        # if period_type=='duration':
+        #     startdate=ET.SubElement(period_,'xbrli:startDate')
+        #     startdate.text='2023-07-01'
+        #     enddate = ET.SubElement(period_, 'xbrli:endDate')
+        #     enddate.text = period
+        # else:
+        #     instant=ET.SubElement(period_, "xbrli:instant")
+        #     instant.text=period
         scenario=ET.SubElement(context, "xbrli:scenario")
         self.contexts.append(context)
-        return scenario
+        return scenario,context
+
+    def makePeriod(self,context,period,period_type):
+        period_ = ET.SubElement(context, "xbrli:period")
+        print(context)
+        if period_type=='duration':
+            startdate=ET.SubElement(period_,'xbrli:startDate')
+            startdate.text='2023-07-01'
+            enddate = ET.SubElement(period_, 'xbrli:endDate')
+            enddate.text = period
+        else:
+            instant=ET.SubElement(period_, "xbrli:instant")
+            instant.text=period
 
     def makeContexts(self,root,contexts):
         for xx in contexts:
@@ -57,43 +74,58 @@ class transformxml():
         var.text = text
         self.varibale.append(var)
 
+
     # Создание контекстов на основе парсинга отчета
-    def makeContAndVar(self, root, data, razdel):
+    def makeContAndVar(self, mapping, data, razdel):
         contexts_defaul=[]
+        period_type=None
         for xx in range(len(data.get('data_root'))):
             i=0
             context_id = data.get('data_root')[xx].get('context_id')
-            scenario = self.makeContext(context_id, data.get('@ОГРН'), data.get('@ОтчДата'), 'instant')
-            for yy in data.get('data_root')[xx].keys():
-                if yy in self.mapping.get(razdel).get('axis').keys():
-                    dimension=self.mapping.get(razdel).get('axis').get(yy).get(data.get('data_root')[xx].get(yy)).get('axis')
-                    text=self.mapping.get(razdel).get('axis').get(yy).get(data.get('data_root')[xx].get(yy)).get('member')
-                    contexts_defaul.append(self.makeAxis_2(scenario,dimension,text))
-                if yy in self.mapping.get(razdel).get('taxis').keys():
-                    dimension=self.mapping.get(razdel).get('taxis').get(yy).get('taxis')
-                    member=self.mapping.get(razdel).get('taxis').get(yy).get('member')
-                    text=data.get('data_root')[xx].get(yy)
-                    self.makeTaxis(scenario,dimension,member,text)
-                if yy in self.mapping.get(razdel).get('varible').keys():
-                    var=self.mapping.get(razdel).get('varible').get(yy).get('var')
-                    unit=self.mapping.get(razdel).get('varible').get(yy).get('unit')
-                    decimals=self.mapping.get(razdel).get('varible').get(yy).get('decimals')
-                    text=data.get('data_root')[xx].get(yy)
-                    self.makeVaribal_2(context_id,var,text,unit,decimals)
+            if mapping.get(razdel).get('axis') or mapping.get(razdel).get('taxis') or mapping.get(razdel).get('varible'):
+                scenario,cont = self.makeContext(context_id, data.get('@ОГРН'), data.get('@ОтчДата'),'instant')
+                for yy in data.get('data_root')[xx].keys():
+                    if mapping.get(razdel).get('axis'):
+                        if yy in mapping.get(razdel).get('axis').keys():
+                            period_type=mapping.get(razdel).get('axis').get(yy).get('period')
+                            dimension=mapping.get(razdel).get('axis').get(yy).get(data.get('data_root')[xx].get(yy)).get('axis')
+                            text=mapping.get(razdel).get('axis').get(yy).get(data.get('data_root')[xx].get(yy)).get('member')
+                            contexts_defaul.append(self.makeAxis_2(scenario,dimension,text))
+                    if mapping.get(razdel).get('taxis'):
+                        if yy in mapping.get(razdel).get('taxis').keys():
+                            period_type = mapping.get(razdel).get('taxis').get(yy).get('period')
+                            dimension=mapping.get(razdel).get('taxis').get(yy).get('taxis')
+                            member=mapping.get(razdel).get('taxis').get(yy).get('member')
+                            text=data.get('data_root')[xx].get(yy)
+                            self.makeTaxis(scenario,dimension,member,text)
+                    if mapping.get(razdel).get('varible'):
+                        if yy in mapping.get(razdel).get('varible').keys():
+                            var=mapping.get(razdel).get('varible').get(yy).get('var')
+                            unit=mapping.get(razdel).get('varible').get(yy).get('unit')
+                            decimals=mapping.get(razdel).get('varible').get(yy).get('decimals')
+                            text=data.get('data_root')[xx].get(yy) if mapping.get(razdel).get('varible').get(yy).get('member')==None else \
+                                mapping.get(razdel).get('varible').get(yy).get('member').get(data.get('data_root')[xx].get(yy))
+                            self.makeVaribal_2(context_id,var,text,unit,decimals)
+                if period_type:
+                    self.makePeriod(cont, data.get('@ОтчДата'), period_type)
 
             for yy in data.get('data_root')[xx].keys():
-                if yy in self.mapping.get(razdel).get('axis_varible').keys():
-                    scenario2 = self.makeContext(f'{context_id}_{i}', data.get('@ОГРН'), data.get('@ОтчДата'), 'instant')
-                    for zz in contexts_defaul:
-                        scenario2.append(zz)
-                    var = self.mapping.get(razdel).get('axis_varible').get(yy).get('var')
-                    unit = self.mapping.get(razdel).get('axis_varible').get(yy).get('unit')
-                    decimals = self.mapping.get(razdel).get('axis_varible').get(yy).get('decimals')
-                    text = data.get('data_root')[xx].get(yy)
-                    self.makeVaribal_2(f'{context_id}_{i}',var,text,unit,decimals)
-                    i=i+1
-                    for aa in self.mapping.get(razdel).get('axis_varible').get(yy).get('axiss'):
-                        self.makeAxis_2(scenario2, aa.get('axis'), aa.get('member'))
+                if mapping.get(razdel).get('axis_varible'):
+                    if yy in mapping.get(razdel).get('axis_varible').keys():
+                        period_type2 = mapping.get(razdel).get('axis_varible').get(yy).get('period')
+                        scenario2,cont2 = self.makeContext(f'{context_id}_{i}', data.get('@ОГРН'), data.get('@ОтчДата'), period_type)
+                        self.makePeriod(cont2,data.get('@ОтчДата'),period_type2)
+                        if mapping.get(razdel).get('axis'):
+                            for zz in contexts_defaul:
+                                scenario2.append(zz)
+                        var = mapping.get(razdel).get('axis_varible').get(yy).get('var')
+                        unit = mapping.get(razdel).get('axis_varible').get(yy).get('unit')
+                        decimals = mapping.get(razdel).get('axis_varible').get(yy).get('decimals')
+                        text = data.get('data_root')[xx].get(yy)
+                        self.makeVaribal_2(f'{context_id}_{i}',var,text,unit,decimals)
+                        i=i+1
+                        for aa in mapping.get(razdel).get('axis_varible').get(yy).get('axiss'):
+                            self.makeAxis_2(scenario2, aa.get('axis'), aa.get('member'))
             contexts_defaul=[]
 
     # создание блока Unit
@@ -132,13 +164,16 @@ class transformxml():
         return data_dict
 
     # парсинг XML
-    def parseXML(self,data,main_tag,final_tag,prefix): #Задается первый корневой тег и тег в котором данные репорта
+    def parseXML(self,data,mapping,razdel): #Задается первый корневой тег и тег в котором данные репорта
         root_f=[]
         ret_dic={}
-        root = data.get(main_tag)
+        root = data.get(mapping.get(razdel).get('root'))
+        final_tag=mapping.get(razdel).get('tag')
         for xx in root.keys():
             if '@' in xx:
                 ret_dic[xx]=root[xx] # записываем данные из корневого тега
+            if 'Составитель' == xx :
+                ret_dic['@ОГРН']=root[xx]['@ОГРН']
             else:
                 f_tag=xx
                 root2=root
@@ -160,18 +195,33 @@ class transformxml():
                     break
 
         for xx in range(len(root_f)):
-            root_f[xx]['context_id']=f'{prefix}_{xx}' # создаем id контекста
+            root_f[xx]['context_id']=f'{razdel}_{xx}' # создаем id контекста
         ret_dic['data_root'] = root_f # записываем результаты парсинга
         return ret_dic
 
 if __name__ == "__main__":
+    # ss=transformxml()
+    # data=ss.readXML('report_0409725new3.xml') # Путь к отчету
+    # xbrl = ss.makeXML()
+    # okud='Ф0409725'
+    # mapping=ss.mapping.get('okud')[okud]
+    # for xx in mapping.keys():
+    #     data_instance = ss.parseXML(data,mapping,xx)
+    #     ss.makeContAndVar(mapping,data_instance,xx)
+    # ss.makeContexts(xbrl,ss.contexts)
+    # ss.makeUnit(xbrl, ss.units)
+    # ss.makeVaribalse_2(xbrl,ss.varibale)
+    # ss.saveXML(xbrl,'report_0409725new3_output')
+
     ss=transformxml()
-    data=ss.readXML('report_04209725.xml') # Путь к отчету
+    data=ss.readXML('report_04209728.xml') # Путь к отчету
     xbrl = ss.makeXML()
-    for xx in ss.mapping.keys():
-        razdel = ss.parseXML(data, ss.mapping.get(xx).get('root'), ss.mapping.get(xx).get('tag'), xx)
-        ss.makeContAndVar(xbrl, razdel, xx)
+    okud='Ф0409728'
+    mapping=ss.mapping.get('okud')[okud]
+    for xx in mapping.keys():
+        data_instance = ss.parseXML(data,mapping,xx)
+        ss.makeContAndVar(mapping,data_instance,xx)
     ss.makeContexts(xbrl,ss.contexts)
     ss.makeUnit(xbrl, ss.units)
     ss.makeVaribalse_2(xbrl,ss.varibale)
-    ss.saveXML(xbrl,'output')
+    ss.saveXML(xbrl,'report_04209728_output')

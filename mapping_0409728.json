@@ -8,7 +8,6 @@
 "xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance",
 "xmlns:link":"http://www.xbrl.org/2003/linkbase",
 "xmlns:xbrldi":"http://xbrl.org/2006/xbrldi",
-"xsi:schemaLocation":"http://xbrl.org/2006/xbrldi http://www.xbrl.org/2006/xbrldi-2006.xsd",
 "xmlns:xbrli":"http://www.xbrl.org/2003/instance"
 },
 "schemaref":"http://www.cbr.ru/xbrl/nso/ko/rep/2022-11-30/ep/ep_SR_0409728.xsd",
@@ -27,7 +26,8 @@
             },
             "taxis": {},
             "varible":{
-                "@ОсущОргЗакРФФункИнфрОргФинРынкЕдинЛич": {"var":"ko-dic:OsusshOrgOprZakRFFunkInfrOrgFinRynkEdinLichEnumerator","enum":{"Да":"mem-int:DaMember","Нет":"mem-int:NetMember"} ,"decimals": null, "unit": null,"period":"instant","axis":null,"taxis":null}
+                "@ОсущОргЗакРФФункИнфрОргФинРынкЕдинЛич": {"var":"ko-dic:OsusshOrgOprZakRFFunkInfrOrgFinRynkEdinLichEnumerator",
+				"enum":{"1":"mem-int:DaMember","0":"mem-int:NetMember"},"axis":null}
             }
         },
       "razdel2":{
@@ -35,30 +35,30 @@
             "axiss_y_synthetic": {},
             "taxis": {},
             "varible": {
-              "@КлирКолСделужСцКонтрДопКлир": {"var":"ko-dic:KolSdelCzKontrDopKlir","decimals": "0","unit": "pure", "period":"instant",
+              "@КлирКолСделужСцКонтрДопКлир": {"var":"ko-dic:KolSdelCzKontrDopKlir","decimals": "0","unit": "pure",
               "axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:Kliring_OrgMember"]},
-              "@КлирКолОбслужУчКлир": {"var": "ko-dic:KolObslUchKlir","decimals": "0","unit": "pure", "period":"instant",
+              "@КлирКолОбслужУчКлир": {"var": "ko-dic:KolObslUchKlir","decimals": "0","unit": "pure",
               "axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:Kliring_OrgMember"]},
-              "@КлирОбязСделСцКонтрДопКлир": {"var": "ko-dic:ObyazSdelCzKontrDopKlir","decimals": "2", "unit": "RUB", "period":"duration","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:Kliring_OrgMember"]},
-              "@ДепозТоргСчДепоСовРынСтоимАктВРубЕкв": {"var": "ko-dic:SovRynStoimAktVRubEkv", "decimals": "2", "unit": "RUB", "period":"instant","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:RaschDepozitarijMember",
+              "@КлирОбязСделСцКонтрДопКлир": {"var": "ko-dic:ObyazSdelCzKontrDopKlir","decimals": "2", "unit": "RUB", "duration":"3","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:Kliring_OrgMember"]},
+              "@ДепозТоргСчДепоСовРынСтоимАктВРубЕкв": {"var": "ko-dic:SovRynStoimAktVRubEkv", "decimals": "2", "unit": "RUB","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:RaschDepozitarijMember",
                 "dim-int:VidSchetaVRaschDepozitariiAxis|mem-int:TorgSchetaDepoMember"]},
-              "@ДепозСубСчДепоСовРынСтоимАктВРубЕкв": {"var": "ko-dic:SovRynStoimAktVRubEkv", "decimals": "2", "unit": "RUB", "period":"instant","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:RaschDepozitarijMember",
+              "@ДепозСубСчДепоСовРынСтоимАктВРубЕкв": {"var": "ko-dic:SovRynStoimAktVRubEkv", "decimals": "2", "unit": "RUB","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:RaschDepozitarijMember",
               "dim-int:VidSchetaVRaschDepozitariiAxis|mem-int:SubschetaDepoKKliringSchetuDepoMember"]},
-              "@ДепозТоргСчДепоКолОбслужЛиц": {"var": "ko-dic:KolObsluzhLicz","decimals": "0","unit": "pure", "period":"instant","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:RaschDepozitarijMember",
+              "@ДепозТоргСчДепоКолОбслужЛиц": {"var": "ko-dic:KolObsluzhLicz","decimals": "0","unit": "pure","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:RaschDepozitarijMember",
                 "dim-int:VidSchetaVRaschDepozitariiAxis|mem-int:TorgSchetaDepoMember"]},
-              "@ДепозКлирСчДепоКолОбслужЛиц": {"var": "ko-dic:KolObsluzhLicz","decimals": "0","unit": "pure", "period":"instant","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:RaschDepozitarijMember",
+              "@ДепозКлирСчДепоКолОбслужЛиц": {"var": "ko-dic:KolObsluzhLicz","decimals": "0","unit": "pure","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:RaschDepozitarijMember",
               "dim-int:VidSchetaVRaschDepozitariiAxis|mem-int:KliringSchetaDepoMember"]},
-              "@ДепозТоргСчДепоКлирСчДепоКолОбслужЛиц": {"var": "ko-dic:KolObsluzhLicz","decimals": "0","unit": "pure", "period":"instant","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:RaschDepozitarijMember",
+              "@ДепозТоргСчДепоКлирСчДепоКолОбслужЛиц": {"var": "ko-dic:KolObsluzhLicz","decimals": "0","unit": "pure","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:RaschDepozitarijMember",
               "dim-int:VidSchetaVRaschDepozitariiAxis|mem-int:TorgSchetaDepoIKliringSchetaDepoMember"]},
-              "@ДепозСубСчДепоКолОбслужЛиц": {"var": "ko-dic:KolObsluzhLicz", "decimals": "0","unit": "pure", "period":"instant","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:RaschDepozitarijMember",
+              "@ДепозСубСчДепоКолОбслужЛиц": {"var": "ko-dic:KolObsluzhLicz", "decimals": "0","unit": "pure","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:RaschDepozitarijMember",
               "dim-int:VidSchetaVRaschDepozitariiAxis|mem-int:SubschetaDepoKKliringSchetuDepoMember"]},
-              "@ДепозТоргСчДепоОбСовОпер": {"var": "ko-dic:ObemSovOperaczij", "decimals": "2", "unit": "RUB", "period":"duration","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:RaschDepozitarijMember",
+              "@ДепозТоргСчДепоОбСовОпер": {"var": "ko-dic:ObemSovOperaczij", "decimals": "2", "unit": "RUB", "duration":"3","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:RaschDepozitarijMember",
               "dim-int:VidSchetaVRaschDepozitariiAxis|mem-int:TorgSchetaDepoMember"]},
-              "@ДепозСубСчДепоОбСовОпер": {"var": "ko-dic:ObemSovOperaczij","decimals": "2", "unit": "RUB","period":"duration","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:RaschDepozitarijMember",
+              "@ДепозСубСчДепоОбСовОпер": {"var": "ko-dic:ObemSovOperaczij","decimals": "2", "unit": "RUB","duration":"3","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:RaschDepozitarijMember",
               "dim-int:VidSchetaVRaschDepozitariiAxis|mem-int:SubschetaDepoKKliringSchetuDepoMember"]},
-              "@РепозКолДогПредставИнфЛицИЗарегВРеестреДог": {"var": "ko-dic:KolDogPredstavInfLiczIZaregVReestreDog", "decimals": "0","unit":"pure","period":"duration","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:repozitarijMember"]},
-              "@РепозКолОбслужКлиентов": {"var": "ko-dic:KolObsluzhKlientov", "decimals": "0","unit": "pure", "period":"instant","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:repozitarijMember"]},
-              "@РепозОбПоДогПредИнфЛицЗарегВРеестреДогРеп": {"var": "ko-dic:ObemPoDogPredInfLicziZaregVReestreDogRep", "decimals": "2", "unit": "RUB","period":"duration","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:repozitarijMember"]}
+              "@РепозКолДогПредставИнфЛицИЗарегВРеестреДог": {"var": "ko-dic:KolDogPredstavInfLiczIZaregVReestreDog", "decimals": "0","unit":"pure","duration":"3","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:repozitarijMember"]},
+              "@РепозКолОбслужКлиентов": {"var": "ko-dic:KolObsluzhKlientov", "decimals": "0","unit": "pure","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:repozitarijMember"]},
+              "@РепозОбПоДогПредИнфЛицЗарегВРеестреДогРеп": {"var": "ko-dic:ObemPoDogPredInfLicziZaregVReestreDogRep", "decimals": "2", "unit": "RUB","duration":"3","axis":["dim-int:Vid_DeyatelnostiAxis|mem-int:repozitarijMember"]}
 
             }
         }

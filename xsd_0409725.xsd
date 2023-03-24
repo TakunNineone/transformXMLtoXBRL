@@ -1,0 +1,892 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           targetNamespace="urn:cbr-ru:rep0409725:v1.0"
+           xmlns="urn:cbr-ru:rep0409725:v1.0"
+           xmlns:report_0409725="urn:cbr-ru:rep0409725:v1.0">
+	<xs:element name="Ф0409725"
+	            xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:sequence>
+			<xs:element name="Составитель" type="Ф0409725Составитель" minOccurs="1" maxOccurs="1"/>			
+				<xs:element name="Ф0409725_Раздел1"
+				            type="Ф0409725_Раздел1"
+				            minOccurs="0"
+				            maxOccurs="1"/>
+				<xs:element name="Ф0409725_Раздел2"
+				            type="Ф0409725_Раздел2"
+				            minOccurs="0"
+				            maxOccurs="1"/>
+				<xs:element name="Ф0409725_Раздел3"
+				            type="Ф0409725_Раздел3"
+				            minOccurs="0"
+				            maxOccurs="1"/>
+			</xs:sequence>
+			<xs:attribute name="ОтчДата"
+			              type="Дата"
+			              use="required"/>
+			<xs:attribute name="ОКУД"
+			              type="ПроизвСтрока"
+			              use="required"/>
+			<xs:attribute name="Периодичность"
+			              type="ПроизвСтрока"
+			              use="required"/>
+		<xs:attribute name="УникИдОЭС" type="GUIDтип" use="required"/>
+		<xs:attribute name="ВидОЭС" type="ВидОЭСтип" use="required"/>
+		<xs:attribute name="КодФормы" type="ПроизвСтрока" use="required"/>
+		<xs:attribute name="ВидОтчета" type="ПроизвСтрока" use="required"/>
+		<xs:attribute name="ДатаВремяФормирования" type="ДатаВремя" use="required"/>						  
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="Ф0409725Составитель" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:sequence>
+			<xs:element name="Руководитель" type="Ф0409725СоставительРуководитель" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ГлавБух" type="Ф0409725СоставительГлавБух" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Исполнитель" type="Ф0409725СоставительИсполнитель" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="ВидОрг" type="ПроизвСтрока" use="required"/>
+		<xs:attribute name="КодОрг" type="ПроизвСтрока" use="required"/>
+		<xs:attribute name="КодТУ" type="ПроизвСтрока" use="optional"/>
+		<xs:attribute name="БИК" type="ПроизвСтрока" use="optional"/>
+		<xs:attribute name="ОКАТО" type="ПроизвСтрока" use="optional"/>
+		<xs:attribute name="ОКПО" type="ПроизвСтрока" use="optional"/>
+		<xs:attribute name="ОГРН" type="ПроизвСтрока" use="optional"/>
+		<xs:attribute name="СокрНаимен" type="ПроизвСтрока" use="optional"/>
+		<xs:attribute name="Адрес" type="ПроизвСтрока" use="optional"/>
+		<xs:attribute name="ДатаПодписания" type="Дата" use="required"/>
+	</xs:complexType>	
+	<xs:complexType name="Ф0409725_Раздел1"
+	                xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:sequence>
+			<xs:element name="Ф0409725_Раздел1_Идент1"
+			            minOccurs="0"
+			            maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="Резидентность"
+					              type="Резидентность"
+					              fixed="Резидент"/>
+					<xs:attribute name="Уровень_Риска"
+					              type="Уровень_Риска"
+					              fixed="Стандартный"/>
+					<xs:attribute name="Тип_Клиента"
+					              type="Тип_Клиента"
+					              fixed="ФЛ"/>
+					<xs:attribute name="КолКлиенНепокрПоз"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="КолКлиенНепокрПозПозСделКор"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="КолКлиенНепокрПозПозСделДлин"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="СумЗначПланПозКлиент"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиент"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиентНомВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиентДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквРуб"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквРуб"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумНедостСредИспНПР1"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумКорПланПозВалДолСША"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумКорПланПозВалЕвро"
+					              type="Десят"
+					              use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Ф0409725_Раздел1_Идент2"
+			            minOccurs="0"
+			            maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="Резидентность"
+					              type="Резидентность"
+					              fixed="Нерезидент"/>
+					<xs:attribute name="Уровень_Риска"
+					              type="Уровень_Риска"
+					              fixed="Стандартный"/>
+					<xs:attribute name="Тип_Клиента"
+					              type="Тип_Клиента"
+					              fixed="ФЛ"/>
+					<xs:attribute name="КолКлиенНепокрПоз"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="КолКлиенНепокрПозПозСделКор"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="КолКлиенНепокрПозПозСделДлин"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="СумЗначПланПозКлиент"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиент"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиентНомВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиентДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквРуб"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквРуб"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумНедостСредИспНПР1"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумКорПланПозВалДолСША"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумКорПланПозВалЕвро"
+					              type="Десят"
+					              use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Ф0409725_Раздел1_Идент3"
+			            minOccurs="0"
+			            maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="Резидентность"
+					              type="Резидентность"
+					              fixed="Резидент"/>
+					<xs:attribute name="Уровень_Риска"
+					              type="Уровень_Риска"
+					              fixed="Стандартный"/>
+					<xs:attribute name="Тип_Клиента"
+					              type="Тип_Клиента"
+					              fixed="ЮЛ"/>
+					<xs:attribute name="КолКлиенНепокрПоз"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="КолКлиенНепокрПозПозСделКор"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="КолКлиенНепокрПозПозСделДлин"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="СумЗначПланПозКлиент"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиент"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиентНомВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиентДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквРуб"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквРуб"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумНедостСредИспНПР1"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумКорПланПозВалДолСША"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумКорПланПозВалЕвро"
+					              type="Десят"
+					              use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Ф0409725_Раздел1_Идент4"
+			            minOccurs="0"
+			            maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="Резидентность"
+					              type="Резидентность"
+					              fixed="Нерезидент"/>
+					<xs:attribute name="Уровень_Риска"
+					              type="Уровень_Риска"
+					              fixed="Стандартный"/>
+					<xs:attribute name="Тип_Клиента"
+					              type="Тип_Клиента"
+					              fixed="ЮЛ"/>
+					<xs:attribute name="КолКлиенНепокрПоз"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="КолКлиенНепокрПозПозСделКор"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="КолКлиенНепокрПозПозСделДлин"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="СумЗначПланПозКлиент"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиент"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиентНомВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиентДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквРуб"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквРуб"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумНедостСредИспНПР1"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумКорПланПозВалДолСША"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумКорПланПозВалЕвро"
+					              type="Десят"
+					              use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Ф0409725_Раздел1_Идент5"
+			            minOccurs="0"
+			            maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="Резидентность"
+					              type="Резидентность"
+					              fixed="Резидент"/>
+					<xs:attribute name="Уровень_Риска"
+					              type="Уровень_Риска"
+					              fixed="Повышенный"/>
+					<xs:attribute name="Тип_Клиента"
+					              type="Тип_Клиента"
+					              fixed="ФЛ"/>
+					<xs:attribute name="КолКлиенНепокрПоз"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="КолКлиенНепокрПозПозСделКор"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="КолКлиенНепокрПозПозСделДлин"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="СумЗначПланПозКлиент"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиент"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиентНомВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиентДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквРуб"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквРуб"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумНедостСредИспНПР1"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумКорПланПозВалДолСША"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумКорПланПозВалЕвро"
+					              type="Десят"
+					              use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Ф0409725_Раздел1_Идент6"
+			            minOccurs="0"
+			            maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="Резидентность"
+					              type="Резидентность"
+					              fixed="Нерезидент"/>
+					<xs:attribute name="Уровень_Риска"
+					              type="Уровень_Риска"
+					              fixed="Повышенный"/>
+					<xs:attribute name="Тип_Клиента"
+					              type="Тип_Клиента"
+					              fixed="ФЛ"/>
+					<xs:attribute name="КолКлиенНепокрПоз"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="КолКлиенНепокрПозПозСделКор"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="КолКлиенНепокрПозПозСделДлин"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="СумЗначПланПозКлиент"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиент"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиентНомВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиентДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквРуб"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквРуб"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумНедостСредИспНПР1"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумКорПланПозВалДолСША"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумКорПланПозВалЕвро"
+					              type="Десят"
+					              use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Ф0409725_Раздел1_Идент7"
+			            minOccurs="0"
+			            maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="Резидентность"
+					              type="Резидентность"
+					              fixed="Резидент"/>
+					<xs:attribute name="Уровень_Риска"
+					              type="Уровень_Риска"
+					              fixed="Повышенный"/>
+					<xs:attribute name="Тип_Клиента"
+					              type="Тип_Клиента"
+					              fixed="ЮЛ"/>
+					<xs:attribute name="КолКлиенНепокрПоз"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="КолКлиенНепокрПозПозСделКор"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="КолКлиенНепокрПозПозСделДлин"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="СумЗначПланПозКлиент"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиент"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиентНомВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиентДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквРуб"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквРуб"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумНедостСредИспНПР1"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумКорПланПозВалДолСША"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумКорПланПозВалЕвро"
+					              type="Десят"
+					              use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Ф0409725_Раздел1_Идент8"
+			            minOccurs="0"
+			            maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="Резидентность"
+					              type="Резидентность"
+					              fixed="Нерезидент"/>
+					<xs:attribute name="Уровень_Риска"
+					              type="Уровень_Риска"
+					              fixed="Повышенный"/>
+					<xs:attribute name="Тип_Клиента"
+					              type="Тип_Клиента"
+					              fixed="ЮЛ"/>
+					<xs:attribute name="КолКлиенНепокрПоз"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="КолКлиенНепокрПозПозСделКор"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="КолКлиенНепокрПозПозСделДлин"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="СумЗначПланПозКлиент"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиент"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиентНомВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиентДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквРуб"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквРуб"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумНедостСредИспНПР1"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумКорПланПозВалДолСША"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумКорПланПозВалЕвро"
+					              type="Десят"
+					              use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Ф0409725_Раздел1_Идент9"
+			            minOccurs="0"
+			            maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="Резидентность"
+					              type="Резидентность"
+					              fixed="Резидент"/>
+					<xs:attribute name="Уровень_Риска"
+					              type="Уровень_Риска"
+					              fixed="Особый"/>
+					<xs:attribute name="Тип_Клиента"
+					              type="Тип_Клиента"
+					              fixed="ЮЛ"/>
+					<xs:attribute name="КолКлиенНепокрПоз"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="КолКлиенНепокрПозПозСделКор"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="КолКлиенНепокрПозПозСделДлин"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="СумЗначПланПозКлиент"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиент"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиентНомВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиентДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквРуб"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквРуб"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумНедостСредИспНПР1"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумКорПланПозВалДолСША"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумКорПланПозВалЕвро"
+					              type="Десят"
+					              use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Ф0409725_Раздел1_Идент10"
+			            minOccurs="0"
+			            maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="Резидентность"
+					              type="Резидентность"
+					              fixed="Нерезидент"/>
+					<xs:attribute name="Уровень_Риска"
+					              type="Уровень_Риска"
+					              fixed="Особый"/>
+					<xs:attribute name="Тип_Клиента"
+					              type="Тип_Клиента"
+					              fixed="ЮЛ"/>
+					<xs:attribute name="КолКлиенНепокрПоз"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="КолКлиенНепокрПозПозСделКор"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="КолКлиенНепокрПозПозСделДлин"
+					              type="ЦелоеПолож"
+					              use="optional"/>
+					<xs:attribute name="СумЗначПланПозКлиент"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиент"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиентНомВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначОтрПланПозКлиентДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквРуб"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделКорВалРФЭквДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквРуб"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквВал"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумЗначНепокрПозПозСделДлинВалРФЭквДрагМет"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумНедостСредИспНПР1"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумКорПланПозВалДолСША"
+					              type="Десят"
+					              use="optional"/>
+					<xs:attribute name="СумКорПланПозВалЕвро"
+					              type="Десят"
+					              use="optional"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Ф0409725_Раздел2_Не_Уник"
+	                xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:sequence>
+			<xs:element name="Ф0409725_Раздел2_Строка"
+			            minOccurs="0"
+			            maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="Резидентность"
+					              type="Резидентность"
+					              use="required"/>
+					<xs:attribute name="Уровень_Риска"
+					              type="Уровень_Риска"
+					              use="required"/>
+					<xs:attribute name="Тип_Клиента"
+					              type="Тип_Клиента"
+					              use="required"/>
+					<xs:attribute name="ДатаТоргДеньОтчПер"
+					              type="Дата"
+					              use="required"/>
+					<xs:attribute name="КолКлиентОтрНПР2"
+					              type="ЦелоеПолож"
+					              use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Ф0409725_Раздел2">
+		<xs:sequence>
+			<xs:element name="Ф0409725_Раздел2_Данные"
+			            type="Ф0409725_Раздел2_Не_Уник"
+			            minOccurs="0"
+			            maxOccurs="1">
+				<xs:unique name="Ф0409725_Раздел2_Уник">
+					<xs:selector xpath=".//report_0409725:Ф0409725_Раздел2_Строка"/>
+					<xs:field xpath="@Резидентность"/>
+					<xs:field xpath="@Уровень_Риска"/>
+					<xs:field xpath="@Тип_Клиента"/>
+					<xs:field xpath="@ДатаТоргДеньОтчПер"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Ф0409725_Раздел3_Не_Уник"
+	                xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:sequence>
+			<xs:element name="Ф0409725_Раздел3_Строка"
+			            minOccurs="0"
+			            maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="Резидентность"
+					              type="Резидентность"
+					              use="required"/>
+					<xs:attribute name="Уровень_Риска"
+					              type="Уровень_Риска"
+					              use="required"/>
+					<xs:attribute name="Тип_Клиента"
+					              type="Тип_Клиента"
+					              use="required"/>
+					<xs:attribute name="ИДЦенБум"
+					              type="ПроизвСтрока"
+					              use="required"/>
+					<xs:attribute name="ISIN"
+					              type="ПроизвСтрока"
+					              use="optional"/>
+					<xs:attribute name="РегНомИдентНомВып"
+					              type="ПроизвСтрока"
+					              use="optional"/>
+					<xs:attribute name="СумКорПланПоз"
+					              type="Десят"
+					              use="optional"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Ф0409725_Раздел3">
+		<xs:sequence>
+			<xs:element name="Ф0409725_Раздел3_Данные"
+			            type="Ф0409725_Раздел3_Не_Уник"
+			            minOccurs="0"
+			            maxOccurs="1">
+				<xs:unique name="Ф0409725_Раздел3_Уник">
+					<xs:selector xpath=".//report_0409725:Ф0409725_Раздел3_Строка"/>
+					<xs:field xpath="@Резидентность"/>
+					<xs:field xpath="@Уровень_Риска"/>
+					<xs:field xpath="@Тип_Клиента"/>
+					<xs:field xpath="@ИДЦенБум"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Ф0409725СоставительРуководитель" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:attribute name="Должность" type="Строка255Непустая" use="required"/>
+		<xs:attribute name="ФИО" type="Строка255Непустая" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="Ф0409725СоставительГлавБух" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:attribute name="Должность" type="Строка255Непустая" use="required"/>
+		<xs:attribute name="ФИО" type="Строка255Непустая" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="Ф0409725СоставительИсполнитель" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:attribute name="Должность" type="Строка255Непустая" use="required"/>
+		<xs:attribute name="ФИО" type="Строка255Непустая" use="required"/>
+		<xs:attribute name="Телефон" type="Строка255Непустая" use="required"/>
+		<xs:attribute name="Факс" type="Строка255" use="optional"/>
+		<xs:attribute name="ЭлПочта" type="Строка255" use="optional"/>
+	</xs:complexType>	
+	
+	<xs:simpleType name="Дата"
+	               xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:annotation>
+			<xs:appinfo>
+				<xs:ПримерыЗначений>
+					<xs:ЗначениеТипа ЗначТипа="2014-11-02"/>
+				</xs:ПримерыЗначений>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:date">
+			<xs:pattern value="\d{4}-\d{2}-\d{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ЦелоеПолож"
+	               xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:annotation>
+			<xs:appinfo>
+				<xs:ПримерыЗначений>
+					<xs:ЗначениеТипа ЗначТипа="1"/>
+					<xs:ЗначениеТипа ЗначТипа="12"/>
+					<xs:ЗначениеТипа ЗначТипа="123"/>
+				</xs:ПримерыЗначений>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="Десят"
+	               xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:annotation>
+			<xs:appinfo>
+				<xs:ПримерыЗначений>
+					<xs:ЗначениеТипа ЗначТипа="707.00"/>
+					<xs:ЗначениеТипа ЗначТипа="231.00"/>
+					<xs:ЗначениеТипа ЗначТипа="15.60"/>
+				</xs:ПримерыЗначений>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Резидентность"
+	               xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Резидент"/>
+			<xs:enumeration value="Нерезидент"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Тип_Клиента"
+	               xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ФЛ"/>
+			<xs:enumeration value="ЮЛ"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Уровень_Риска"
+	               xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Стандартный"/>
+			<xs:enumeration value="Повышенный"/>
+			<xs:enumeration value="Особый"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ОГРНтип"
+	               xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:annotation>
+			<xs:appinfo>
+				<xs:ПримерыЗначений>
+					<xs:ЗначениеТипа ЗначТипа="1234567890123"/>
+				</xs:ПримерыЗначений>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{13}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ПроизвСтрока"
+	               xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="Строка255" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:restriction base="xs:string">
+	<xs:maxLength value="255"/>
+	</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Строка255Непустая" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:restriction base="xs:string">
+	<xs:maxLength value="255"/>
+	<xs:minLength value="1"/>
+	</xs:restriction>
+	</xs:simpleType>
+    <xs:simpleType name="GUIDтип" xmlns:xs="http://www.w3.org/2001/XMLSchema"><xs:annotation><xs:appinfo><xs:ПримерыЗначений><xs:ЗначениеТипа ЗначТипа="6F9619FF-8B86-D011-B42D-00CF4FC994FF"/><xs:ЗначениеТипа ЗначТипа="A57E17DF-8B86-B711-A42D-00CF4FC994AC"/></xs:ПримерыЗначений></xs:appinfo></xs:annotation><xs:restriction base="xs:string"><xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/></xs:restriction></xs:simpleType>
+	<xs:simpleType name="ВидОЭСтип" xmlns:xs="http://www.w3.org/2001/XMLSchema"><xs:restriction base="xs:string"><xs:enumeration value="Отчетность КО"/><xs:enumeration value="Отчетность ТУ"/></xs:restriction></xs:simpleType>
+	<xs:simpleType name="ДатаВремя" xmlns:xs="http://www.w3.org/2001/XMLSchema"><xs:annotation><xs:appinfo><xs:ПримерыЗначений><xs:ЗначениеТипа ЗначТипа="2014-11-30T13:20:45"/></xs:ПримерыЗначений></xs:appinfo></xs:annotation><xs:restriction base="xs:dateTime"><xs:pattern value="\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}"/></xs:restriction></xs:simpleType>	
+</xs:schema>

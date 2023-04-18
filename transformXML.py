@@ -171,7 +171,7 @@ class transformxml():
 if __name__ == "__main__":
     ss=transformxml('mapping_0409725_old.json')
     xbrl=ss.makeXBRL()
-    instance=ss.parseXML('report_0409725.xml')
+    instance=ss.parseXML('report_0409725_2.xml')
     ss.fillcontext(instance)
     ss.writecontext(xbrl)
     ss.makeUnit(xbrl)
@@ -180,7 +180,7 @@ if __name__ == "__main__":
 
     # ss = transformxml('mapping_0409728.json')
     # xbrl = ss.makeXBRL()
-    # instance = ss.parseXML('report_04209728.xml')
+    # instance = ss.parseXML('report_0409728.xml')
     # ss.fillcontext(instance)
     # ss.writecontext(xbrl)
     # ss.makeUnit(xbrl)

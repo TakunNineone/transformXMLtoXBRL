@@ -25,6 +25,7 @@
   "root": "Ф0409725",
   "data": {
     "razdel1": {
+	  "parent_tags": ["Ф0409725_Раздел1"],
       "tag": "Ф0409725_Раздел1_Идент",
       "axiss_y_synthetic": {
         "@Резидентность": {
@@ -55,6 +56,28 @@
           ]
         }
       },
+	  "lines":{
+		  "Ф0409725_Раздел1_Идент1": ["dim-int:Rezident_nerezidentAxis|mem-int:RezidentMember","dim-int:Tip_i_status_klientaAxis|mem-int:FLMember",
+		  "dim-int:Uroven_riskaAxis|mem-int:StandartMember"],
+		  "Ф0409725_Раздел1_Идент2": ["dim-int:Rezident_nerezidentAxis|mem-int:NerezidentMember","dim-int:Tip_i_status_klientaAxis|mem-int:FLMember",
+		  "dim-int:Uroven_riskaAxis|mem-int:StandartMember"],
+		  "Ф0409725_Раздел1_Идент3": ["dim-int:Rezident_nerezidentAxis|mem-int:RezidentMember","dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+		  "dim-int:Uroven_riskaAxis|mem-int:StandartMember"],
+		  "Ф0409725_Раздел1_Идент4": ["dim-int:Rezident_nerezidentAxis|mem-int:NerezidentMember","dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+		  "dim-int:Uroven_riskaAxis|mem-int:StandartMember"],
+		  "Ф0409725_Раздел1_Идент5":["dim-int:Rezident_nerezidentAxis|mem-int:RezidentMember","dim-int:Tip_i_status_klientaAxis|mem-int:FLMember",
+		  "dim-int:Uroven_riskaAxis|mem-int:PovyshMember"],
+		  "Ф0409725_Раздел1_Идент6":["dim-int:Rezident_nerezidentAxis|mem-int:NerezidentMember","dim-int:Tip_i_status_klientaAxis|mem-int:FLMember",
+		  "dim-int:Uroven_riskaAxis|mem-int:PovyshMember"],
+		  "Ф0409725_Раздел1_Идент7":["dim-int:Rezident_nerezidentAxis|mem-int:RezidentMember","dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+		  "dim-int:Uroven_riskaAxis|mem-int:PovyshMember"],
+		  "Ф0409725_Раздел1_Идент8":["dim-int:Rezident_nerezidentAxis|mem-int:NerezidentMember","dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+		  "dim-int:Uroven_riskaAxis|mem-int:PovyshMember"],
+		  "Ф0409725_Раздел1_Идент9":["dim-int:Rezident_nerezidentAxis|mem-int:RezidentMember","dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+		  "dim-int:Uroven_riskaAxis|mem-int:OsobMember"],
+		  "Ф0409725_Раздел1_Идент10":["dim-int:Rezident_nerezidentAxis|mem-int:NerezidentMember","dim-int:Tip_i_status_klientaAxis|mem-int:YULMember",
+		  "dim-int:Uroven_riskaAxis|mem-int:OsobMember"]
+	  },
       "taxis": {},
       "varible": {
         "@КолКлиенНепокрПоз": {
@@ -182,6 +205,7 @@
       }
     },
     "razdel2": {
+	  "parent_tags":["Ф0409725_Раздел2","Ф0409725_Раздел2_Данные"],
       "tag": "Ф0409725_Раздел2_Строка",
       "axiss_y_synthetic": {
         "@Резидентность": {
@@ -212,6 +236,7 @@
           ]
         }
       },
+	  "lines": null,
       "taxis": {
         "@ДатаТоргДеньОтчПер": "dim-int:Data_Torg_den_Taxis|dim-int:Data_Torg_denTypedname"
       },
@@ -225,6 +250,7 @@
       }
     },
     "razdel3": {
+	  "parent_tags":["Ф0409725_Раздел3","Ф0409725_Раздел3_Данные"],
       "tag": "Ф0409725_Раздел3_Строка",
       "axiss_y_synthetic": {
         "@Резидентность": {
@@ -255,6 +281,7 @@
           ]
         }
       },
+	  "lines": null,
       "taxis": {
         "@ИДЦенБум": "dim-int:ID_CzennojBumagiTaxis|dim-int:ID_CzennojBumagi_TypedName"
       },

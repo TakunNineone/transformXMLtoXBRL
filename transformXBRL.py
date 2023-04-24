@@ -148,7 +148,6 @@ class transformxml():
                     result_otchet[str(group_osi)]['razdel'] = xx['razdel']
                     result_otchet[str(group_osi)][xx['name']] = xx['value']
 
-
         for xx in result_otchet.keys():
             print(xx,result_otchet[xx])
 

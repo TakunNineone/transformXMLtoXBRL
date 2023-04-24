@@ -9,12 +9,17 @@ import itertools
 class transformxml():
     def __init__(self, path):
         self.mapping = self.readmapping(path)
+        self.root=self.mapping.get('root')
         self.context_data= {}
         self.varible_data= {}
         self.data_list_reverse= {}
         self.axis_synt_list=[]
         self.taxis_list=[]
         self.var_list=[]
+    def saveXBRL(self,xbrl,filename):
+        rough_string = ET.tostring(xbrl, encoding='utf-8', method='xml')
+        reparsed = minidom.parseString(rough_string)
+        reparsed.writexml(open(f'{filename}.xml', 'w'), indent="  ", addindent="  ", newl='\n', encoding="utf-8")
 
     def uniq(self, lst):
         last = object()
@@ -23,6 +28,15 @@ class transformxml():
                 continue
             yield item
             last = item
+
+    def list_to_dict(self,dict):
+        taxis_list = {}
+        for item in dict:
+            keys = item.keys()
+            for key in keys:
+                taxis_list[key] = item[key]
+        return taxis_list
+
 
     def sort_and_deduplicate(self, l):
         return list(self.uniq(sorted(l, reverse=True)))
@@ -89,8 +103,24 @@ class transformxml():
                     self.varible_data[xx][xml_root[xx]['@contextRef']] = xml_root[xx]['#text']
 
     def parsemapping(self):
+        self.to_save_xml={}
         data_dict = self.mapping.get('data')
+        self.root = self.mapping.get('root')
+        self.root_xml = ET.Element(self.root)
+        self.root_xml.attrib = {'xmlns': "urn:cbr-ru:rep0409725:v1.0"}
         for razdel_key in data_dict.keys():
+            parent_temp = self.root_xml
+            tag=data_dict[razdel_key]['tag']
+            for child in data_dict[razdel_key]['parent_tags']:
+                sub = ET.SubElement(parent_temp, child)
+                parent_temp = sub
+            self.to_save_xml[tag]=sub
+
+
+            if data_dict[razdel_key]['lines']:
+                lines={tuple(v):k for k, v in data_dict[razdel_key]['lines'].items()}
+            else:
+                lines=None
             axis_list,taxis_list= [],[]
             tag=data_dict[razdel_key].get('tag')
             axis_synt_list_temp={}
@@ -98,7 +128,8 @@ class transformxml():
                 for ax_value in data_dict[razdel_key]['axiss_y_synthetic'][ax].keys():
                     ax_tax=data_dict[razdel_key]['axiss_y_synthetic'][ax][ax_value]
                     axis_list.append({tuple(ax_tax):{'name':ax,'value':ax_value}})
-                    axis_synt_list_temp[tuple(ax_tax)]={'name':ax,'value':ax_value}
+                    print(ax_tax[0])
+                    axis_synt_list_temp[ax_tax[0]]={'name':ax,'value':ax_value}
 
             taxis_list_temp={}
             for tax in data_dict[razdel_key]['taxis'].keys():
@@ -127,11 +158,9 @@ class transformxml():
                 #var_list_temp.append({var_tax:{'name':var_name,'var_axis':var_axis,'razdel_axis':razdel_axis,'razdel_taxis':razdel_taxis}})
                 var_list_temp1[tuple(var_axis+razdel_axis+razdel_taxis)]={'name':var_name,'tag':tag}
                 var_list_temp[var_tax]=var_list_temp1
-            # print(var_list_temp)
             self.axis_synt_list.append(axis_synt_list_temp)
             self.taxis_list.append(taxis_list_temp)
-            self.var_list.append({'data':var_list_temp,'razdel_axis':razdel_axis,'razdel_taxis':razdel_taxis})
-            # print(self.var_list)
+            self.var_list.append({'data':var_list_temp,'razdel_axis':razdel_axis,'razdel_taxis':razdel_taxis,'lines':lines,'parent_tags':data_dict[razdel_key].get('parent_tags')})
 
         # for xx in self.taxis_list:
         #     print(xx)
@@ -144,7 +173,6 @@ class transformxml():
             if var_taxonomy in xx['data'].keys():
                 line_osi = []
                 find_osi = []
-                group_osi = []
                 for zz in axis_taxonomy:
                     if zz.split('|')[0] in xx['razdel_axis']:
                         line_osi.append(zz)
@@ -157,36 +185,60 @@ class transformxml():
                 for kk in xx['data'][var_taxonomy].keys():
                     if numpy.isin(list(kk),osi).all() and numpy.isin(osi,list(kk)).all():
                         razdel=xx['data'][var_taxonomy][kk]['tag']
+                        parent_tags=xx['parent_tags']
                         name=xx['data'][var_taxonomy][kk]['name']
-        return {'group_ois':group_osi,'razdel':razdel,'name':name,'line_osi':line_osi}
+                        if xx['lines']:
+                            for ll in xx['lines'].keys():
+                                if numpy.isin(list(ll),line_osi).all():
+                                    line_name=xx['lines'].get(ll)
+                        else:
+                            line_name=razdel
+        #print(parent_tags)
+        return {'group_osi':group_osi,'razdel':razdel,'name':name,'line_osi':line_osi,'line_name':line_name}
 
     def do_line(self):
+        final=[]
         for xx in self.varible_data.keys():
             for yy in self.varible_data[xx]:
+                value=self.varible_data[xx][yy]
                 axis=self.context_data[yy]['axis']
                 taxis=self.context_data[yy]['taxis']
                 parse_result=self.find_in_mapping(xx,axis,taxis)
-                print(parse_result,self.varible_data[xx][yy])
+                final.append({'group_osi':parse_result['group_osi'],'razdel':parse_result['razdel'],'line_name':parse_result['line_name'],'name':parse_result['name'],'line_osi':parse_result['line_osi'],'value':value})
+        #print(final)
+        return final
 
+    def do_xml(self,data):
+        taxis_dict=self.list_to_dict(self.taxis_list)
+        axis_dict=self.list_to_dict(self.axis_synt_list)
+        root = ET.Element(self.root)
+        root.attrib={'xmlns':"urn:cbr-ru:rep0409725:v1.0"}
+        group_list=self.sort_and_deduplicate([xx['group_osi'] for xx in data])
 
-                # print(var_taxonomy)
-        # print(axis_taxonomy)
-        # print(taxis_taxonomy)
-        # for xx in self.var_list:
-        #     if var_taxonomy in xx.keys():
-        #         print(xx[var_taxonomy])
-        #         print(axis_taxonomy)
-        #         print(taxis_taxonomy)
+        #print(group_list)
+        for xx in group_list:
+            one_line={}
+            for oo in xx:
+                if len(oo.split('|'))==3:
+                    one_line[taxis_dict.get(oo.split('|')[0]+'|'+oo.split('|')[1]).replace('@','')]=oo.split('|')[2]
+                elif len(oo.split('|'))==2:
+                    one_line[axis_dict[oo].get('name').replace('@','')]=axis_dict[oo].get('value')
+            for yy in data:
+                if yy['group_osi']==xx:
+                    one_line[yy['name'].replace('@','')]=yy['value']
+                    parent_elem=self.to_save_xml[yy['razdel']]
+                    line_name=yy['line_name']
+                    #print(self.to_save_xml[yy['razdel']], yy['line_name'] +' ' +yy['name'].replace('@','') + '=' + yy['value'] + ' ')
+            sub_elem=ET.SubElement(parent_elem,line_name)
+            sub_elem.attrib=one_line
 
-
-
-
+        rough_string = ET.tostring(self.root_xml, encoding='utf-8', method='xml')
+        reparsed = minidom.parseString(rough_string)
+        reparsed.writexml(open(f'XML_725.xml', 'w'), indent="  ", addindent="  ", newl='\n', encoding="utf-8")
 
 if __name__ == "__main__":
     ss=transformxml('mapping_0409725_old.json')
     ss.readxbrl('report_0409725_output.xml')
     ss.parsemapping()
-    # ss.find_in_mapping('nfo-dic:GosRegNomerVyp',['dim-int:Uroven_riskaAxis|mem-int:StandartMember', 'dim-int:Tip_i_status_klientaAxis|mem-int:FLMember', 'dim-int:Rezident_nerezidentAxis|mem-int:RezidentMember'],
-    #                    ['dim-int:ID_CzennojBumagiTaxis|dim-int:ID_CzennojBumagi_TypedName|RU0007661625'])
-    # ss.find_in_mapping('ko-dic:Kol_nepokr_poz',['dim-int:Uroven_riskaAxis|mem-int:PovyshMember', 'dim-int:Tip_i_status_klientaAxis|mem-int:YULMember', 'dim-int:Rezident_nerezidentAxis|mem-int:NerezidentMember', 'dim-int:PozicziyaPoSdelkeAxis|mem-int:KorotkayaMember'],[])
-    ss.do_line()
+    data=ss.do_line()
+    ss.do_xml(data)

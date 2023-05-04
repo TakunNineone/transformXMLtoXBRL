@@ -1,10 +1,4 @@
-import itertools,collections,xmltodict,json,xml.dom.minidom as minidom,xml.etree.ElementTree as ET,operator
-import numpy as np
-from dateutil.relativedelta import relativedelta
-from datetime import datetime
-import numpy
-import hashlib
-import itertools
+import numpy,xmltodict,json,xml.dom.minidom as minidom,xml.etree.ElementTree as ET,operator
 
 class transformxml():
     def __init__(self, path):
@@ -99,7 +93,7 @@ class transformxml():
         data_dict = self.mapping.get('data')
         self.root = self.mapping.get('root')
         self.root_xml = ET.Element(self.root)
-        self.root_xml.attrib = {'xmlns': "urn:cbr-ru:rep0409725:v1.0",'ВидОЭС':'','ВидОтчета':'','ДатаВремяФормирования':'',
+        self.root_xml.attrib = {'xmlns': "",'ВидОЭС':'','ВидОтчета':'','ДатаВремяФормирования':'',
                                 'КодФормы':self.root.replace('Ф',''),'ОКУД':self.root.replace('Ф',''),'ОтчДата':self.period,
                                 'Периодичность':'','УникИдОЭС':''}
         sostavitel=ET.SubElement(self.root_xml,'Составитель')
@@ -251,13 +245,15 @@ class transformxml():
         for xx in to_save:
             xx['parent'].append(xx['element'])
 
-
-        rough_string = ET.tostring(self.root_xml, encoding='utf-8', method='xml')
-        reparsed = minidom.parseString(rough_string)
-        reparsed.writexml(open(f'XML_725.xml', 'w'), indent="  ", addindent="  ", newl='\n', encoding="utf-8")
-
 if __name__ == "__main__":
     ss=transformxml('mapping_0409728_test.json')
     ss.readxbrl('report_0409728_output.xml')
     ss.parsemapping()
     ss.do_xml(ss.do_line())
+    ss.saveXBRL(ss.root_xml,'report_0409728_REoutput')
+
+    ss=transformxml('mapping_0409725_old.json')
+    ss.readxbrl('report_0409725_output.xml')
+    ss.parsemapping()
+    ss.do_xml(ss.do_line())
+    ss.saveXBRL(ss.root_xml,'report_0409725_REoutput')
